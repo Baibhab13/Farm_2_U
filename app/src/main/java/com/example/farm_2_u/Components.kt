@@ -3,12 +3,9 @@ package com.example.farm_2_u
 import android.net.Uri
 import android.widget.MediaController
 import android.widget.VideoView
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,11 +16,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -31,39 +30,44 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
 
+
 // VIDEO PLAYER COMPONENT
-//@Composable
-//fun VideoPlayer(videoUri: Uri) {
-//    AndroidView(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(16.dp)
-//            .clip(RoundedCornerShape(16.dp)),
-//        factory = { context ->
-//            VideoView(context).apply {
-//                setVideoURI(videoUri)
-//
-//                val mediaController = MediaController(context)
-//                mediaController.setAnchorView(this)
-//
-//                setMediaController(mediaController)
-//                setOnPreparedListener {
-//                    start()
-//                }
-//            }
-//        }
-//    )
-//}
+@Composable
+fun VideoPlayer(videoUri: Uri) {
+    AndroidView(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clip(RoundedCornerShape(16.dp)),
+        factory = { context ->
+            VideoView(context).apply {
+                setVideoURI(videoUri)
+
+                val mediaController = MediaController(context)
+                mediaController.setAnchorView(this)
+
+                setMediaController(mediaController)
+
+                setOnPreparedListener {
+                    start()
+                }
+            }
+        }
+    )
+}
 
 // CUSTOM OTP TEXT FIELD
 @Composable
@@ -110,7 +114,8 @@ fun OTPTextField(
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Next
-                )
+                ),
+                visualTransformation = PasswordVisualTransformation()
             )
 
             Spacer(modifier = Modifier.width(15.dp))
@@ -118,79 +123,53 @@ fun OTPTextField(
     }
 }
 
-data class FAQItem(val question: String, val answer: String)
-
+// GRID CELL COMPONENT
 @Composable
-fun FAQSection(faqItems: List<FAQItem>) {
-    @Composable
-    fun FAQItemCard(faqItem: FAQItem) {
-        var expanded by remember { mutableStateOf(false) }
-
-        // Define the colors for expanded and collapsed states
-        val cardBackgroundColor = if (expanded) {
-            colorResource(id = R.color.c2) // Color when expanded
-        } else {
-            colorResource(id = R.color.c1) // Color when collapsed
-        }
-        // Define the text color based on the card's state
-        val textcolor = if (expanded) {
-            colorResource(id = R.color.c1) // Color when expanded
-        } else {
-            colorResource(id = R.color.teal_700) // Color when collapsed
-        }
-
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = cardBackgroundColor // Dynamic color based on expanded state
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { expanded = !expanded } // Toggle expanded state on click
-                .padding(8.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                // Question text
-                Text(
-                    text = faqItem.question,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    modifier = Modifier.fillMaxWidth(),
-                    color = textcolor // Adjust text color for better visibility
-                )
-
-                // Animated visibility of the answer
-                AnimatedVisibility(
-                    visible = expanded,
-                    enter = expandVertically() + fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    Text(
-                        text = faqItem.answer,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp),
-                        fontSize = 16.sp,
-                        color = textcolor // Adjust text color for better visibility
-                    )
-                }
-            }
-        }
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        faqItems.forEach { item ->
-            FAQItemCard(faqItem = item)
-            Spacer(modifier = Modifier.height(8.dp)) // Spacer between FAQ items
+fun LazyGrid() {
+    LazyVerticalGrid(columns = GridCells.Adaptive(140.dp)) {
+        items(10) {
+            MyGridCell()
         }
     }
 }
 
+@Composable
+fun MyGridCell() {
+    Card(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxSize()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.no_bg_logo_1),
+                contentDescription = "Greek Salad",
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Text(
+                text = "Greek Salad",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .align(Alignment.TopStart)
 
+            )
+            Text(
+                text = "30Rs/Kg",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .background(Color.White)
+                    .padding(start = 4.dp, end = 4.dp)
+                    .align(Alignment.BottomEnd)
+
+            )
+        }
+    }
+}
