@@ -8,6 +8,7 @@ import com.example.farm_2_u.pages.Landing_page
 import com.example.farm_2_u.pages.Login_page
 import com.example.farm_2_u.pages.GetOTP_page
 import com.example.farm_2_u.pages.Home_page
+import com.example.farm_2_u.pages.Sell_page
 
 @Composable
 fun MyappNavigation() {
@@ -19,11 +20,14 @@ fun MyappNavigation() {
         composable(Loginpage.route) {
             Login_page(navController = navController)
         }
-        composable(GetOTPpage.route) {
+        composable(GetOTP_page.route) {
             GetOTP_page(navController = navController)
         }
         composable(Homepage.route) {
             Home_page(navController = navController)
+        }
+        composable(Homepage.route) {
+            Sell_page(navController = navController)
         }
     })
 }

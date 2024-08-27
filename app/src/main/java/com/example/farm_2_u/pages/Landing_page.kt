@@ -34,10 +34,10 @@ fun Landing_page(navController: NavHostController) {
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.c4))
 
         ) {
-            Text(
+            Text (
                 text = "Login",
                 color = Color.White
-            )
+            )//fhfdhdr
         }
     }
 }

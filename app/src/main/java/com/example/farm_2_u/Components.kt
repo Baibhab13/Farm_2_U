@@ -22,10 +22,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -172,4 +181,37 @@ fun MyGridCell() {
             )
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar() {
+    // Scaffold provides a structure with optional slots for TopAppBar, BottomAppBar, etc.
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("My App") },
+                navigationIcon = {
+                    IconButton(onClick = { /* Handle navigation icon press */ }) {
+                        Icon(Icons.Filled.Menu, contentDescription = "Menu")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { /* Handle chat icon press */ }) {
+                        Icon(Icons.Filled.DateRange, contentDescription = "Chat")
+                    }
+                    IconButton(onClick = { /* Handle analytics icon press */ }) {
+                        Icon(Icons.Filled.AccountCircle, contentDescription = "Analytics")
+                    }
+                }
+            )
+        },
+        content = { paddingValues ->
+            // The content of the screen goes here, inside the scaffold's body
+            Text(
+                text = "Hello, World!",
+                modifier = Modifier.padding(paddingValues)
+            )
+        }
+    )
 }
