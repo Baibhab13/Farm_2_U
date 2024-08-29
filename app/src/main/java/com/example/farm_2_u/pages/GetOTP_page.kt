@@ -53,7 +53,7 @@ fun GetOTP_page(navController: NavHostController) {
             fontSize = 20.sp
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         OTPTextField(
             length = 4,
