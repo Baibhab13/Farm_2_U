@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.farm_2_u.Homepage
 import com.example.farm_2_u.OTPTextField
 import com.example.farm_2_u.R
 
@@ -67,7 +68,7 @@ fun GetOTP_page(navController: NavHostController) {
                 if (otpVal.value.isEmpty()) {
                     Toast.makeText(context, "Please enter OTP", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Handle OTP submission
+                    navController.navigate(Homepage.route)
                 }
             },
             modifier = Modifier
