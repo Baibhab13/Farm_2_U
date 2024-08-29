@@ -61,7 +61,6 @@ fun Login_page(navController: NavHostController) {
             painter = painterResource(id = R.drawable.no_bg_logo_1),
             contentDescription ="logo",
             modifier = Modifier.width(200.dp)
-
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
