@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -26,6 +27,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,9 +41,10 @@ import com.example.farm_2_u.R
 @Composable
 fun Login_page(navController: NavHostController) {
     val num = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val passwordVisible = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val bgcolor = colorResource(id = R.color.c1)
-    val navController = rememberNavController()
 
     Column(
         modifier = Modifier
@@ -59,7 +64,7 @@ fun Login_page(navController: NavHostController) {
 
         Image(
             painter = painterResource(id = R.drawable.no_bg_logo_1),
-            contentDescription ="logo",
+            contentDescription = "logo",
             modifier = Modifier.width(200.dp)
         )
 
@@ -67,24 +72,40 @@ fun Login_page(navController: NavHostController) {
 
         OutlinedTextField(
             value = num.value,
-            onValueChange = {
-                    newtxt -> num.value = newtxt
+            onValueChange = { newtxt ->
+                if (newtxt.length <= 10 && newtxt.all { it.isDigit() }) {
+                    num.value = newtxt
+                }
             },
             modifier = Modifier
                 .padding(2.dp)
                 .fillMaxWidth(),
             label = { Text("Number") },
-            placeholder = { Text("Enter your number") }
+            placeholder = { Text("Enter your number") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
-        Spacer(modifier = Modifier.padding(2.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
+
+        OutlinedTextField(
+            value = password.value,
+            onValueChange = { password.value = it },
+            modifier = Modifier
+                .padding(2.dp)
+                .fillMaxWidth(),
+            label = { Text("Password") },
+            placeholder = { Text("Enter your password") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
+        )
+
+        Spacer(modifier = Modifier.padding(20.dp))
 
         Button(onClick = {
             navController.navigate(GetOTP_page.route)
             Toast.makeText(context, "OTP Sent", Toast.LENGTH_SHORT).show()
         },
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.c4))
-
         ) {
             Text(
                 text = "Get OTP",
