@@ -35,11 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.farm_2_u.GetOTP_page
 import com.example.farm_2_u.R
 
 @Composable
-fun Login_page(navController: NavHostController) {
+fun Seller_Loginpage(navController: NavHostController) {
     val num = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val passwordVisible = remember { mutableStateOf(false) }
@@ -55,7 +54,7 @@ fun Login_page(navController: NavHostController) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Login page",
+            text = "Welcome Farmers \n Login and Sell your Products",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
@@ -102,7 +101,7 @@ fun Login_page(navController: NavHostController) {
         Spacer(modifier = Modifier.padding(20.dp))
 
         Button(onClick = {
-            navController.navigate(GetOTP_page.route)
+            navController.navigate(com.example.farm_2_u.GetOTP_page.route)
             Toast.makeText(context, "OTP Sent", Toast.LENGTH_SHORT).show()
         },
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.c4))
@@ -128,7 +127,7 @@ fun Login_page(navController: NavHostController) {
 
 @Preview(showBackground = true)
 @Composable
-fun LoginPagePreview() {
+fun SellerLoginpagePreview() {
     val navController = rememberNavController()
-    Login_page(navController)
+    Seller_Loginpage(navController)
 }

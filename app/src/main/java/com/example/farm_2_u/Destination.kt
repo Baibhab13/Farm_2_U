@@ -22,3 +22,9 @@ object GetOTP_page:Destination{
 object Sell_page:Destination{
     override val route = "sell"
 }
+object Seller_Loginpage:Destination{
+    override val route = "sellerlogin"
+}
+object Buyer_Loginpage:Destination{
+    override val route = "buyerlogin"
+}

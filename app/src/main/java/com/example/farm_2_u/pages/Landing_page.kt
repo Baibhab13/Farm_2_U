@@ -35,6 +35,8 @@ import com.example.farm_2_u.FAQItem
 import com.example.farm_2_u.FAQSection
 import com.example.farm_2_u.R
 import com.example.farm_2_u.Loginpage
+import com.example.farm_2_u.Seller_Loginpage
+import com.example.farm_2_u.Buyer_Loginpage
 //import com.example.farm_2_u.VideoPlayer
 //import android.net.Uri
 
@@ -83,7 +85,7 @@ fun Landing_page(navController: NavHostController) {
             ) {
                 Button(
                     onClick = {
-                        navController.navigate(Loginpage.route)
+                        navController.navigate(Seller_Loginpage.route)
                     },
                     modifier = Modifier.padding(end = 1.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -99,7 +101,7 @@ fun Landing_page(navController: NavHostController) {
 
                 Button(
                     onClick = {
-                        navController.navigate(Loginpage.route)
+                        navController.navigate(Buyer_Loginpage.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(id = R.color.c1)
