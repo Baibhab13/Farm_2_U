@@ -28,3 +28,6 @@ object Seller_Loginpage:Destination{
 object Buyer_Loginpage:Destination{
     override val route = "buyerlogin"
 }
+object AboutUs:Destination{
+    override val route = "aboutus"
+}

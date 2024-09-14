@@ -69,9 +69,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation ("androidx.compose.ui:ui:1.4.0")
-    implementation ("androidx.compose.material3:material3:1.2.0") // Use the latest version available
-    implementation ("androidx.navigation:navigation-compose:2.6.0") // Use the latest version available
+    implementation ("androidx.compose.ui:ui:1.7.1")
+    implementation ("androidx.compose.material3:material3:1.3.0") // Use the latest version available
+    implementation ("androidx.navigation:navigation-compose:2.8.0") // Use the latest version available
 
-    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+    implementation (libs.chromecast.sender)
 }
