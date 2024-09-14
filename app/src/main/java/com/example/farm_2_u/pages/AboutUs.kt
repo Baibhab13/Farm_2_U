@@ -29,7 +29,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.farm_2_u.R
 
-
 @Composable
 fun AboutUs(navController: NavHostController) {
     // Wrapping the content with a Box to add a background color
