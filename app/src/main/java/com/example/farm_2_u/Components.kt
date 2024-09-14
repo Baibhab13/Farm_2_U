@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -34,9 +33,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -59,9 +56,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
+
 
 
 // VIDEO PLAYER COMPONENT
@@ -80,7 +77,6 @@ fun VideoPlayer(videoUri: Uri) {
                 mediaController.setAnchorView(this)
 
                 setMediaController(mediaController)
-
                 setOnPreparedListener {
                     start()
                 }
@@ -224,36 +220,6 @@ fun TopBar() {
             )
         }
     )
-
-}
-
-@Composable
-fun DynamicElevatedCards(cards: List<String>) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        for (cardText in cards) {
-            ElevatedCard(
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 6.dp
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .size(width = 240.dp, height = 100.dp)
-            ) {
-                Text(
-                    text = cardText,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-    }
 }
 
 data class FAQItem(val question: String, val answer: String)

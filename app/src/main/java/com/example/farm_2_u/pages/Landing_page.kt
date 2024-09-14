@@ -3,13 +3,16 @@ package com.example.farm_2_u.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,14 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.farm_2_u.AboutUs
 import com.example.farm_2_u.FAQItem
 import com.example.farm_2_u.FAQSection
 import com.example.farm_2_u.R
 import com.example.farm_2_u.Loginpage
 import com.example.farm_2_u.Seller_Loginpage
 import com.example.farm_2_u.Buyer_Loginpage
-//import com.example.farm_2_u.VideoPlayer
-//import android.net.Uri
 
 @Composable
 fun Landing_page(navController: NavHostController) {
@@ -80,7 +82,7 @@ fun Landing_page(navController: NavHostController) {
 
             Row(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
+                    .align(Alignment.BottomEnd)
                     .padding(bottom = 16.dp)
             ) {
                 Button(
@@ -106,7 +108,7 @@ fun Landing_page(navController: NavHostController) {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(id = R.color.c1)
                     ),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 8.dp, end=8.dp)
                 ) {
                     Text(
                         text = "Buy",
@@ -127,7 +129,7 @@ fun Landing_page(navController: NavHostController) {
         )
 
         Text(
-            text = "Why choose Farm2U",
+            text = "Why choose FARM2YOU",
             fontSize = 32.sp,
             color = colorResource(id = R.color.teal_700),
             modifier = Modifier
@@ -154,8 +156,8 @@ fun Landing_page(navController: NavHostController) {
 
         FAQSection(
             faqItems = listOf(
-                FAQItem("What is Farm2U?", "Farm2U is a platform that connects farmers with consumers directly."),
-                FAQItem("How do I sell on Farm2U?", "To sell, click on the 'Sell' button and follow the steps to list your products."),
+                FAQItem("What is FARM2YOU?", "FARM2YOU is a platform that connects farmers with consumers directly."),
+                FAQItem("How do I sell on FARM2YOU?", "To sell, click on the 'Sell' button and follow the steps to list your products."),
                 FAQItem("How do I buy products?", "To buy products, click on the 'Buy' button and explore our product range."),
                 FAQItem("What payment methods are supported?", "We support all major credit cards, debit cards, and digital wallets."),
                 FAQItem("Is delivery available?", "Yes, we provide doorstep delivery for all listed products.")
@@ -165,8 +167,7 @@ fun Landing_page(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(1.dp)
-                .clip(RoundedCornerShape(5.dp))
+                .clip(RoundedCornerShape(15.dp))
                 .background(color = colorResource(id = R.color.teal_700))
         ) {
             Text(
@@ -175,26 +176,46 @@ fun Landing_page(navController: NavHostController) {
                 color = Color.White,
                 modifier = Modifier
                     .align(Alignment.Start)  // Align text to the top-left corner
-                    .padding(16.dp),
+                    .padding(start = 10.dp, bottom = 5.dp, top = 10.dp)
+                    .clickable { navController.navigate(AboutUs.route) },
                 fontWeight = FontWeight.Bold
             )
             Text(
                 text = "Copyright @ 2024 Farm2U \n" +
-                        " This is a working prototype of the problem statement " +
-                        "\n It is made by My team Farmtak " +
-                        "\n Right Reserved " +
-                        "\n Privacy Policy " +
-                        "\n Terms of Services " +
-                        "\n Cancellation Policy " +
-                        "\n Career",
+                        "This is a working prototype of the problem statement\n" +
+                        "It is made by My team Farmtak\n" +
+                        "Right Reserved\n" +
+                        "Privacy Policy\n" +
+                        "Terms of Services\n" +
+                        "Cancellation Policy\n" +
+                        "Career",
                 fontSize = 15f.sp,
                 color = Color.White,
                 modifier = Modifier
                     .align(Alignment.Start)  // Align text to the top-left corner
-                    .padding(10.dp)
+                    .padding(start = 10.dp, bottom = 5.dp)
             )
-        }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, bottom = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ){
+                Image(
+                    painter = painterResource(id = R.drawable.facebook),
+                    contentDescription ="facebooklogo",
+                    modifier = Modifier.size(30.dp)
+                )
+                
+                Spacer(modifier = Modifier.padding(5.dp))
 
+                Image(
+                    painter = painterResource(id = R.drawable.linkedin),
+                    contentDescription ="facebooklogo",
+                    modifier = Modifier.size(30.dp)
+                )
+            }
+        }
     }
 }
 

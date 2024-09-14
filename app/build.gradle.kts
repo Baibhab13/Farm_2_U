@@ -73,6 +73,5 @@ dependencies {
     implementation ("androidx.compose.material3:material3:1.3.0") // Use the latest version available
     implementation ("androidx.navigation:navigation-compose:2.8.0") // Use the latest version available
 
-
     implementation (libs.chromecast.sender)
 }
