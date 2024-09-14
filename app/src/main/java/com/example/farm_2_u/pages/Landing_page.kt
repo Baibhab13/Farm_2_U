@@ -179,13 +179,19 @@ fun Landing_page(navController: NavHostController) {
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "This is a working prototype of the problem statement \n It is made by My team Farmtak",
-                fontSize = 10.sp,
+                text = "Copyright @ 2024 Farm2U \n" +
+                        " This is a working prototype of the problem statement " +
+                        "\n It is made by My team Farmtak " +
+                        "\n Right Reserved " +
+                        "\n Privacy Policy " +
+                        "\n Terms of Services " +
+                        "\n Cancellation Policy " +
+                        "\n Career",
+                fontSize = 15f.sp,
                 color = Color.White,
                 modifier = Modifier
                     .align(Alignment.Start)  // Align text to the top-left corner
-                    .padding(16.dp),
-                fontWeight = FontWeight.Bold
+                    .padding(10.dp)
             )
         }
 
