@@ -17,7 +17,6 @@ private fun AppScreen() {
     LazyGrid()
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {

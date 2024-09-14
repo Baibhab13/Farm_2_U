@@ -3,9 +3,15 @@ package com.example.farm_2_u
 import android.net.Uri
 import android.widget.MediaController
 import android.widget.VideoView
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,6 +24,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -27,6 +34,9 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -44,6 +54,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -213,4 +224,112 @@ fun TopBar() {
             )
         }
     )
+
 }
+
+@Composable
+fun DynamicElevatedCards(cards: List<String>) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        for (cardText in cards) {
+            ElevatedCard(
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 6.dp
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+                    .size(width = 240.dp, height = 100.dp)
+            ) {
+                Text(
+                    text = cardText,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}
+
+data class FAQItem(val question: String, val answer: String)
+
+@Composable
+fun FAQSection(faqItems: List<FAQItem>) {
+    @Composable
+    fun FAQItemCard(faqItem: FAQItem) {
+        var expanded by remember { mutableStateOf(false) }
+
+        // Define the colors for expanded and collapsed states
+        val cardBackgroundColor = if (expanded) {
+            colorResource(id = R.color.c2) // Color when expanded
+        } else {
+            colorResource(id = R.color.c1) // Color when collapsed
+        }
+        // Define the text color based on the card's state
+        val textcolor = if (expanded) {
+            colorResource(id = R.color.c1) // Color when expanded
+        } else {
+            colorResource(id = R.color.teal_700) // Color when collapsed
+        }
+
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = cardBackgroundColor // Dynamic color based on expanded state
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded } // Toggle expanded state on click
+                .padding(8.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                // Question text
+                Text(
+                    text = faqItem.question,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    modifier = Modifier.fillMaxWidth(),
+                    color = textcolor // Adjust text color for better visibility
+                )
+
+                // Animated visibility of the answer
+                AnimatedVisibility(
+                    visible = expanded,
+                    enter = expandVertically() + fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    Text(
+                        text = faqItem.answer,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        fontSize = 16.sp,
+                        color = textcolor // Adjust text color for better visibility
+                    )
+                }
+            }
+        }
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        faqItems.forEach { item ->
+            FAQItemCard(faqItem = item)
+            Spacer(modifier = Modifier.height(8.dp)) // Spacer between FAQ items
+        }
+    }
+}
+
+
+

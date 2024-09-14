@@ -19,6 +19,6 @@ object Loginpage:Destination{
 object GetOTP_page:Destination{
     override val route = "getotp"
 }
-object SellPage:Destination{
+object Sell_page:Destination{
     override val route = "sell"
 }

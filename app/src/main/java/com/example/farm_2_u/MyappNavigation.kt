@@ -26,7 +26,7 @@ fun MyappNavigation() {
         composable(Homepage.route) {
             Home_page(navController = navController)
         }
-        composable(Homepage.route) {
+        composable(Sell_page.route) {
             Sell_page(navController = navController)
         }
     })
