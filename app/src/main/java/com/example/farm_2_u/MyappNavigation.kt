@@ -6,7 +6,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.farm_2_u.pages.Buyer_Loginpage
 import com.example.farm_2_u.pages.Landing_page
-import com.example.farm_2_u.pages.Login_page
 import com.example.farm_2_u.pages.GetOTP_page
 import com.example.farm_2_u.pages.Home_page
 import com.example.farm_2_u.pages.Sell_page
@@ -18,9 +17,6 @@ fun MyappNavigation() {
     NavHost(navController = navController, startDestination = Landingpage.route, builder = {
         composable(Landingpage.route) {
             Landing_page(navController = navController)
-        }
-        composable(Loginpage.route) {
-            Login_page(navController = navController)
         }
         composable(GetOTP_page.route) {
             GetOTP_page(navController = navController)
