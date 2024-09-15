@@ -1,6 +1,5 @@
 package com.example.farm_2_u.pages
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
