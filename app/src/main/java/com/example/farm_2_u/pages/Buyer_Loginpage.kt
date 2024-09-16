@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,8 +55,12 @@ fun Buyer_Loginpage(navController: NavHostController) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Welcome Costumers \n Get Fresh Products",
+            text = "Welcome Costumers\nGet Fresh Products",
             fontSize = 20.sp,
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                color = Color.Black
+            ),
             fontWeight = FontWeight.Bold
         )
 
