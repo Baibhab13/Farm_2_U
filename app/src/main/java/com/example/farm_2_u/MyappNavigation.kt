@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.farm_2_u.pages.AboutUs
 import com.example.farm_2_u.pages.Buyer_Loginpage
+import com.example.farm_2_u.pages.Farmer_Regpage
 import com.example.farm_2_u.pages.Landing_page
 import com.example.farm_2_u.pages.GetOTP_page
 import com.example.farm_2_u.pages.Home_page
@@ -36,6 +37,9 @@ fun MyappNavigation() {
         }
         composable(AboutUs.route) {
             AboutUs(navController = navController)
+        }
+        composable(Farmer_Regpage.route) {
+            Farmer_Regpage(navController = navController)
         }
     })
 }
