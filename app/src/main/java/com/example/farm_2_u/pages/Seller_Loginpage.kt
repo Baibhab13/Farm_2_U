@@ -119,7 +119,9 @@ fun Seller_Loginpage(navController: NavHostController) {
 
         Spacer(modifier = Modifier.padding(50.dp))
 
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(onClick = {
+            navController.navigate(com.example.farm_2_u.Farmer_Regpage.route)
+        }) {
             Text(
                 text = "Register! New User",
                 style = TextStyle(

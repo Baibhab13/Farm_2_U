@@ -31,3 +31,6 @@ object Buyer_Loginpage:Destination{
 object AboutUs:Destination{
     override val route = "aboutus"
 }
+object Farmer_Regpage:Destination{
+    override val route = "farmerreg"
+}
