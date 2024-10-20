@@ -8,6 +8,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:windowSoftInputMode ="adjustResize"
         android:supportsRtl="true"
         android:theme="@style/Theme.Farm_2_U"
         tools:targetApi="31">
