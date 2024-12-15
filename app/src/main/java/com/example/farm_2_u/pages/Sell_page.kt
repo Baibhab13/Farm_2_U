@@ -14,8 +14,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
-
-
 @Composable
 fun Sell_page(navController: NavHostController) {
 
