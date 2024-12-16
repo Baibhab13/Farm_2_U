@@ -59,9 +59,9 @@ fun Seller_Loginpage(navController: NavHostController) {
             fontSize = 20.sp,
             style = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color.Black
-            ),
-            fontWeight = FontWeight.Bold
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            )
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
@@ -106,7 +106,8 @@ fun Seller_Loginpage(navController: NavHostController) {
         Spacer(modifier = Modifier.padding(20.dp))
 
         Button(onClick = {
-            navController.navigate(com.example.farm_2_u.GetOTP_page.route)
+            // Ensure `GetOTP_page` is a valid route in your navigation setup
+            navController.navigate("GetOTP_page")
             Toast.makeText(context, "OTP Sent", Toast.LENGTH_SHORT).show()
         },
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.c4))
@@ -120,7 +121,8 @@ fun Seller_Loginpage(navController: NavHostController) {
         Spacer(modifier = Modifier.padding(50.dp))
 
         TextButton(onClick = {
-            navController.navigate(com.example.farm_2_u.Farmer_Regpage.route)
+            // Ensure `Farmer_Regpage` is a valid route in your navigation setup
+            navController.navigate("Farmer_Regpage")
         }) {
             Text(
                 text = "Register! New User",
